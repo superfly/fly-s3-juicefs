@@ -1,0 +1,24 @@
+app = "kurt-juicefs"
+primary_region = "ord"
+kill_signal = "SIGINT"
+kill_timeout = 30
+
+# AWS environment variables for S3 storage (used by Litestream)
+# These are automatically added from your Fly secrets
+# AWS_ACCESS_KEY_ID
+# AWS_SECRET_ACCESS_KEY
+# AWS_ENDPOINT_URL_S3
+# AWS_REGION
+# BUCKET_NAME
+
+[build]
+  dockerfile = "Dockerfile"
+
+[[vm]]
+  cpu_kind = "performance"
+  cpus = 4
+  memory_mb = 8192
+
+[[mounts]]
+  source = "juicefs_data"
+  destination = "/dev/fly_vol"
